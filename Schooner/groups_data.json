@@ -1,0 +1,64 @@
+﻿{
+  "Groups": [
+    {
+      "Id": 1,
+      "Name": "\u7B2C1\u5C0F\u7EC4",
+      "Students": [
+        {
+          "Name": "\u5F20\u4E09",
+          "Score": 4
+        },
+        {
+          "Name": "\u674E\u56DB",
+          "Score": 0
+        },
+        {
+          "Name": "\u738B\u4E94",
+          "Score": 0
+        },
+        {
+          "Name": "\u5C0F\u660E",
+          "Score": 0
+        },
+        {
+          "Name": "\u5C0F\u7EA2",
+          "Score": 0
+        },
+        {
+          "Name": "\u5F20\u601D",
+          "Score": 0
+        },
+        {
+          "Name": "\u5C0F\u94B1",
+          "Score": 0
+        }
+      ]
+    }
+  ],
+  "Logs": [
+    {
+      "Timestamp": "2026-06-17 00:29:34",
+      "GroupName": "\u7B2C1\u5C0F\u7EC4",
+      "StudentName": "\u5F20\u4E09",
+      "Action": "\u002B 1 \u5206"
+    },
+    {
+      "Timestamp": "2026-06-17 00:29:34",
+      "GroupName": "\u7B2C1\u5C0F\u7EC4",
+      "StudentName": "\u5F20\u4E09",
+      "Action": "\u002B 1 \u5206"
+    },
+    {
+      "Timestamp": "2026-06-17 00:29:34",
+      "GroupName": "\u7B2C1\u5C0F\u7EC4",
+      "StudentName": "\u5F20\u4E09",
+      "Action": "\u002B 1 \u5206"
+    },
+    {
+      "Timestamp": "2026-06-07 15:38:52",
+      "GroupName": "\u7B2C1\u5C0F\u7EC4",
+      "StudentName": "\u5F20\u4E09",
+      "Action": "\u002B 1 \u5206"
+    }
+  ]
+}
