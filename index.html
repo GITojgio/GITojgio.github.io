@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Schooner</title>
     <style>
-        /* ========== 微软 Fluent Design 风格重置 ========== */
+        /* ========== 全局重置 ========== */
         * {
             margin: 0;
             padding: 0;
@@ -23,95 +23,33 @@
             padding: 24px;
         }
 
-        /* ========== 主卡片 ========== */
+        /* ========== 卡片容器 ========== */
         .card {
-            max-width: 720px;
+            max-width: 480px;
             width: 100%;
             background: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
-            padding: 48px 56px;
-            transition: box-shadow 0.2s;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            padding: 56px 48px;
+            text-align: center;
         }
 
-        .card:hover {
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
-        }
-
-        /* ========== 软件标题 ========== */
+        /* ========== 软件名称 ========== */
         .app-title {
-            font-size: 32px;
+            font-size: 40px;
             font-weight: 600;
             color: #1a1a1a;
-            letter-spacing: -0.3px;
-            margin-bottom: 6px;
-        }
-
-        .app-subtitle {
-            font-size: 15px;
-            font-weight: 400;
-            color: #605e5c;
-            margin-bottom: 24px;
-        }
-
-        /* ========== 分割线（微软风格细线） ========== */
-        .divider {
-            width: 100%;
-            height: 1px;
-            background: #e0e0e0;
-            margin: 16px 0 24px 0;
-        }
-
-        /* ========== 软件介绍 ========== */
-        .app-description {
-            font-size: 15px;
-            font-weight: 400;
-            color: #323130;
-            line-height: 1.6;
-            margin-bottom: 28px;
-        }
-
-        .app-description strong {
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        /* ========== 信息列表（微软风格明细） ========== */
-        .info-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            letter-spacing: -0.5px;
             margin-bottom: 32px;
         }
 
-        .info-row {
-            display: flex;
-            font-size: 14px;
-            color: #323130;
-            padding: 4px 0;
-        }
-
-        .info-label {
-            width: 80px;
-            font-weight: 400;
-            color: #605e5c;
-            flex-shrink: 0;
-        }
-
-        .info-value {
-            font-weight: 400;
-            color: #1a1a1a;
-        }
-
-        /* ========== 下载按钮（微软主按钮样式） ========== */
+        /* ========== 下载按钮（微软风格） ========== */
         .download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 40px;
+            display: inline-block;
+            padding: 12px 56px;
             background: #0078d4;
             color: #ffffff;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 500;
             font-family: inherit;
             border: none;
@@ -120,8 +58,6 @@
             text-decoration: none;
             transition: background 0.15s, box-shadow 0.15s;
             box-shadow: 0 2px 4px rgba(0, 120, 212, 0.2);
-            letter-spacing: 0.2px;
-            min-width: 120px;
         }
 
         .download-btn:hover {
@@ -131,42 +67,19 @@
 
         .download-btn:active {
             background: #005a9e;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        /* ========== 版本信息（页脚细字） ========== */
-        .footer-meta {
-            margin-top: 28px;
-            font-size: 12px;
-            color: #a19f9d;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-meta span {
-            display: inline-flex;
-            align-items: center;
         }
 
         /* ========== 响应式 ========== */
-        @media (max-width: 600px) {
+        @media (max-width: 500px) {
             .card {
-                padding: 32px 24px;
+                padding: 40px 24px;
             }
             .app-title {
-                font-size: 26px;
-            }
-            .info-row {
-                flex-wrap: wrap;
-            }
-            .info-label {
-                width: 100%;
-                margin-bottom: 2px;
+                font-size: 32px;
             }
             .download-btn {
                 width: 100%;
-                justify-content: center;
+                padding: 12px 0;
             }
         }
     </style>
@@ -177,68 +90,13 @@
 
         <!-- 软件名称 -->
         <h1 class="app-title">Schooner</h1>
-        <div class="app-subtitle">轻量 · 高效 · 纯净</div>
 
-        <div class="divider"></div>
-
-        <!-- 软件介绍 -->
-        <div class="app-description">
-            <strong>Schooner</strong> 是一款专注于<strong>本地文件快速检索</strong>的桌面工具。
-            无需索引，即开即用，帮助你在海量文件中秒级定位目标。
-        </div>
-
-        <!-- 信息明细 -->
-        <div class="info-grid">
-            <div class="info-row">
-                <span class="info-label">版本</span>
-                <span class="info-value">v1.0.2</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">大小</span>
-                <span class="info-value">2.4 MB</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">系统</span>
-                <span class="info-value">Windows 10 / 11</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">更新</span>
-                <span class="info-value">2026-06-17</span>
-            </div>
-        </div>
-
-        <!-- 下载按钮 -->
-        <a href="#" class="download-btn" id="downloadBtn">
+        <!-- 下载按钮（直接指向你的 zip 文件） -->
+        <a href="https://GITojgio.github.io/Schooner.zip" class="download-btn" download>
             下载 Schooner
         </a>
 
-        <!-- 页脚 -->
-        <div class="footer-meta">
-            <span>🔒 本地运行 · 无数据上传</span>
-            <span>📦 安装包已签名</span>
-        </div>
-
     </div>
-
-    <script>
-        // ============================================================
-        // 点击下载按钮时，替换成你的真实下载链接
-        // ============================================================
-        document.getElementById('downloadBtn').addEventListener('click', function(e) {
-            // 如果你已经上传了安装包，把下面的链接换成真实地址
-            // 例如：https://你的用户名.github.io/schooner_setup.exe
-            const downloadUrl = 'https://GITojgio.github.io/Schooner.zip';
-
-            // 如果尚未配置真实链接，给出提示
-            if (downloadUrl === 'https://GITojgio.github.io/Schooner.zip') {
-                e.preventDefault();
-                alert('请先上传 schooner_setup.exe 到仓库，然后修改代码中的下载链接。');
-            } else {
-                // 正常跳转下载
-                window.location.href = downloadUrl;
-            }
-        });
-    </script>
 
 </body>
 </html>
