@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Schooner</title>
+    <title>Schooner - 官方网站</title>
     <style>
-        /* ========== 全局重置 ========== */
+        /* ========== 全局重置 & 字体 ========== */
         * {
             margin: 0;
             padding: 0;
@@ -17,39 +17,149 @@
             background: #f0f2f5;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
+            color: #1a1a1a;
         }
 
-        /* ========== 卡片容器 ========== */
-        .card {
-            max-width: 480px;
-            width: 100%;
+        /* ========== 左侧导航栏（微软风格） ========== */
+        .sidebar {
+            width: 240px;
+            min-height: 100vh;
             background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-            padding: 56px 48px;
-            text-align: center;
+            box-shadow: 1px 0 4px rgba(0, 0, 0, 0.06);
+            padding: 40px 20px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* ========== 软件名称 ========== */
-        .app-title {
-            font-size: 40px;
+        /* 导航栏中的软件名称（作为品牌标识） */
+        .sidebar-brand {
+            font-size: 24px;
             font-weight: 600;
             color: #1a1a1a;
-            letter-spacing: -0.5px;
-            margin-bottom: 32px;
+            letter-spacing: -0.3px;
+            padding-bottom: 28px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e8e8e8;
         }
 
-        /* ========== 下载按钮（微软风格） ========== */
+        /* 导航菜单 */
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .nav-item {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 400;
+            color: #323130;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            background: transparent;
+            border: none;
+            text-align: left;
+            font-family: inherit;
+            width: 100%;
+        }
+
+        .nav-item:hover {
+            background: #f0f2f5;
+            color: #1a1a1a;
+        }
+
+        .nav-item.active {
+            background: #e5f0fa;
+            color: #0078d4;
+            font-weight: 500;
+        }
+
+        /* 底部版权信息（微软常见做法） */
+        .sidebar-footer {
+            font-size: 12px;
+            color: #a19f9d;
+            padding-top: 20px;
+            border-top: 1px solid #e8e8e8;
+            margin-top: 20px;
+        }
+
+        /* ========== 右侧内容区域 ========== */
+        .main-content {
+            flex: 1;
+            padding: 40px 56px;
+            max-width: 900px;
+        }
+
+        /* 每个页面内容块（默认隐藏） */
+        .page {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== 页面标题 ========== */
+        .page-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .page-sub {
+            font-size: 15px;
+            color: #605e5c;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        /* ========== 下载卡片（微软风格） ========== */
+        .download-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 28px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px solid #edebe9;
+            margin-top: 12px;
+        }
+
+        .download-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .download-name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        .download-meta {
+            font-size: 14px;
+            color: #605e5c;
+        }
+
         .download-btn {
-            display: inline-block;
-            padding: 12px 56px;
+            padding: 10px 36px;
             background: #0078d4;
             color: #ffffff;
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 500;
             font-family: inherit;
             border: none;
@@ -58,6 +168,7 @@
             text-decoration: none;
             transition: background 0.15s, box-shadow 0.15s;
             box-shadow: 0 2px 4px rgba(0, 120, 212, 0.2);
+            white-space: nowrap;
         }
 
         .download-btn:hover {
@@ -69,34 +180,284 @@
             background: #005a9e;
         }
 
+        /* ========== 意见反馈页面（表单） ========== */
+        .feedback-group {
+            margin-bottom: 20px;
+        }
+
+        .feedback-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #323130;
+            margin-bottom: 6px;
+        }
+
+        .feedback-group input,
+        .feedback-group textarea {
+            width: 100%;
+            max-width: 480px;
+            padding: 10px 14px;
+            font-size: 14px;
+            font-family: inherit;
+            border: 1px solid #d1d1d1;
+            border-radius: 4px;
+            background: #ffffff;
+            transition: border 0.15s;
+            color: #1a1a1a;
+        }
+
+        .feedback-group input:focus,
+        .feedback-group textarea:focus {
+            outline: none;
+            border-color: #0078d4;
+            box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.15);
+        }
+
+        .feedback-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            padding: 10px 40px;
+            background: #0078d4;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-family: inherit;
+        }
+
+        .submit-btn:hover {
+            background: #106ebe;
+        }
+
         /* ========== 响应式 ========== */
-        @media (max-width: 500px) {
-            .card {
-                padding: 40px 24px;
+        @media (max-width: 720px) {
+            body {
+                flex-direction: column;
             }
-            .app-title {
-                font-size: 32px;
+            .sidebar {
+                width: 100%;
+                min-height: auto;
+                padding: 20px 24px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 12px;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+            }
+            .sidebar-brand {
+                border-bottom: none;
+                padding-bottom: 0;
+                margin-bottom: 0;
+                font-size: 20px;
+            }
+            .nav-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 4px;
+                flex: 1;
+            }
+            .nav-item {
+                padding: 6px 14px;
+                font-size: 14px;
+                width: auto;
+            }
+            .sidebar-footer {
+                display: none;
+            }
+            .main-content {
+                padding: 24px 20px;
+            }
+            .download-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
             }
             .download-btn {
-                width: 100%;
-                padding: 12px 0;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                padding: 16px;
+            }
+            .nav-item {
+                font-size: 13px;
+                padding: 4px 12px;
+            }
+            .page-title {
+                font-size: 22px;
+            }
+            .main-content {
+                padding: 18px 16px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
+    <!-- ============================================================ -->
+    <!-- 左侧导航栏 -->
+    <!-- ============================================================ -->
+    <nav class="sidebar">
+        <div class="sidebar-brand">Schooner</div>
 
-        <!-- 软件名称 -->
-        <h1 class="app-title">Schooner</h1>
+        <div class="nav-menu">
+            <button class="nav-item active" data-page="home">主页</button>
+            <button class="nav-item" data-page="about">公司简介</button>
+            <button class="nav-item" data-page="download">下载中心</button>
+            <button class="nav-item" data-page="feedback">意见反馈</button>
+        </div>
 
-        <!-- 下载按钮（直接指向你的 zip 文件） -->
-        <a href="https://GITojgio.github.io/Schooner.zip" class="download-btn" download>
-            下载 Schooner
-        </a>
+        <div class="sidebar-footer">© 2026 Schooner</div>
+    </nav>
 
-    </div>
+    <!-- ============================================================ -->
+    <!-- 右侧内容区 -->
+    <!-- ============================================================ -->
+    <main class="main-content">
+
+        <!-- ===== 主页 ===== -->
+        <section id="page-home" class="page active">
+            <h1 class="page-title">欢迎使用 Schooner</h1>
+            <p class="page-sub">
+                一款专注于本地文件快速检索的桌面工具。<br />
+                无需索引，即开即用，帮助您在海量文件中秒级定位目标。
+            </p>
+            <div style="font-size:15px;color:#323130;line-height:1.7;margin-top:12px;">
+                <p>✅ 轻量级安装包（仅 2.4 MB）</p>
+                <p>✅ 支持 Windows 10 / 11</p>
+                <p>✅ 完全本地运行，无数据上传</p>
+            </div>
+        </section>
+
+        <!-- ===== 公司简介 ===== -->
+        <section id="page-about" class="page">
+            <h1 class="page-title">公司简介</h1>
+            <p class="page-sub">
+                Schooner 团队致力于打造简洁、高效、安全的桌面工具软件。
+                我们坚持「少即是多」的设计理念，专注于解决用户在实际使用中的痛点。
+            </p>
+            <div style="font-size:15px;color:#323130;line-height:1.8;margin-top:8px;">
+                <p><strong>成立时间</strong> 2024 年</p>
+                <p><strong>核心宗旨</strong> 让工具回归工具，不打扰，不繁琐。</p>
+                <p><strong>产品方向</strong> 文件管理、系统优化、效率工具。</p>
+            </div>
+        </section>
+
+        <!-- ===== 下载中心 ===== -->
+        <section id="page-download" class="page">
+            <h1 class="page-title">下载中心</h1>
+            <p class="page-sub">最新版本软件，点击下方按钮即可下载。</p>
+
+            <div class="download-card">
+                <div class="download-info">
+                    <span class="download-name">Schooner v1.0.2</span>
+                    <span class="download-meta">2.4 MB · Windows 10/11 · 2026-06-17</span>
+                </div>
+                <a href="https://GITojgio.github.io/Schooner.zip" class="download-btn" download>
+                    下载
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== 意见反馈 ===== -->
+        <section id="page-feedback" class="page">
+            <h1 class="page-title">意见反馈</h1>
+            <p class="page-sub">如果您在使用过程中遇到问题，或有任何建议，请告诉我们。</p>
+
+            <form id="feedbackForm" style="margin-top:16px;">
+                <div class="feedback-group">
+                    <label for="feedbackName">姓名</label>
+                    <input type="text" id="feedbackName" placeholder="请输入您的姓名" />
+                </div>
+                <div class="feedback-group">
+                    <label for="feedbackEmail">邮箱</label>
+                    <input type="email" id="feedbackEmail" placeholder="请输入您的邮箱" />
+                </div>
+                <div class="feedback-group">
+                    <label for="feedbackMessage">反馈内容</label>
+                    <textarea id="feedbackMessage" placeholder="请详细描述您的问题或建议..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">提交反馈</button>
+            </form>
+            <div id="feedbackTip" style="margin-top:16px;font-size:14px;color:#0078d4;display:none;"></div>
+        </section>
+
+    </main>
+
+    <script>
+        // ============================================================
+        // 1. 左侧导航切换逻辑
+        // ============================================================
+        const navItems = document.querySelectorAll('.nav-item');
+        const pages = {
+            home: document.getElementById('page-home'),
+            about: document.getElementById('page-about'),
+            download: document.getElementById('page-download'),
+            feedback: document.getElementById('page-feedback')
+        };
+
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // 移除所有导航按钮的 active 状态
+                navItems.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                // 隐藏所有页面
+                Object.values(pages).forEach(page => page.classList.remove('active'));
+
+                // 显示选中的页面
+                const pageKey = this.dataset.page;
+                if (pages[pageKey]) {
+                    pages[pageKey].classList.add('active');
+                }
+            });
+        });
+
+        // ============================================================
+        // 2. 意见反馈表单提交（模拟提示）
+        // ============================================================
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('feedbackName').value.trim();
+            const email = document.getElementById('feedbackEmail').value.trim();
+            const message = document.getElementById('feedbackMessage').value.trim();
+
+            if (!name || !email || !message) {
+                alert('请完整填写所有字段（姓名、邮箱、反馈内容）。');
+                return;
+            }
+
+            // 简单邮箱格式校验
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('请输入有效的邮箱地址。');
+                return;
+            }
+
+            const tip = document.getElementById('feedbackTip');
+            tip.style.display = 'block';
+            tip.textContent = '✅ 感谢您的反馈，我们会尽快处理！';
+            tip.style.color = '#107c10';
+
+            // 清空表单
+            this.reset();
+
+            // 5秒后提示消失
+            setTimeout(() => {
+                tip.style.display = 'none';
+            }, 5000);
+        });
+    </script>
 
 </body>
 </html>
