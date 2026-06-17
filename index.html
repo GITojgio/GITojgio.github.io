@@ -180,60 +180,46 @@
             background: #005a9e;
         }
 
-        /* ========== 意见反馈页面（表单） ========== */
-        .feedback-group {
-            margin-bottom: 20px;
+        /* ========== 意见反馈页面（跳转WPS表单） ========== */
+        .feedback-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 32px;
+            border: 1px solid #edebe9;
+            text-align: center;
+            margin-top: 12px;
         }
 
-        .feedback-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
+        .feedback-card p {
+            font-size: 15px;
             color: #323130;
-            margin-bottom: 6px;
+            margin-bottom: 20px;
+            line-height: 1.7;
         }
 
-        .feedback-group input,
-        .feedback-group textarea {
-            width: 100%;
-            max-width: 480px;
-            padding: 10px 14px;
-            font-size: 14px;
-            font-family: inherit;
-            border: 1px solid #d1d1d1;
-            border-radius: 4px;
-            background: #ffffff;
-            transition: border 0.15s;
-            color: #1a1a1a;
-        }
-
-        .feedback-group input:focus,
-        .feedback-group textarea:focus {
-            outline: none;
-            border-color: #0078d4;
-            box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.15);
-        }
-
-        .feedback-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            padding: 10px 40px;
+        .feedback-link-btn {
+            display: inline-block;
+            padding: 12px 48px;
             background: #0078d4;
             color: #ffffff;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 500;
+            font-family: inherit;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition: background 0.15s;
-            font-family: inherit;
+            text-decoration: none;
+            transition: background 0.15s, box-shadow 0.15s;
+            box-shadow: 0 2px 4px rgba(0, 120, 212, 0.2);
         }
 
-        .submit-btn:hover {
+        .feedback-link-btn:hover {
             background: #106ebe;
+            box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3);
+        }
+
+        .feedback-link-btn:active {
+            background: #005a9e;
         }
 
         /* ========== 响应式 ========== */
@@ -298,6 +284,14 @@
             }
             .main-content {
                 padding: 18px 16px;
+            }
+            .feedback-card {
+                padding: 24px 18px;
+            }
+            .feedback-link-btn {
+                width: 100%;
+                padding: 12px 0;
+                text-align: center;
             }
         }
     </style>
@@ -364,34 +358,27 @@
             </div>
         </section>
 
-        <!-- ===== 意见反馈 ===== -->
+        <!-- ===== 意见反馈（跳转WPS表单） ===== -->
         <section id="page-feedback" class="page">
             <h1 class="page-title">意见反馈</h1>
             <p class="page-sub">如果您在使用过程中遇到问题，或有任何建议，请告诉我们。</p>
 
-            <form id="feedbackForm" style="margin-top:16px;">
-                <div class="feedback-group">
-                    <label for="feedbackName">姓名</label>
-                    <input type="text" id="feedbackName" placeholder="请输入您的姓名" />
-                </div>
-                <div class="feedback-group">
-                    <label for="feedbackEmail">邮箱</label>
-                    <input type="email" id="feedbackEmail" placeholder="请输入您的邮箱" />
-                </div>
-                <div class="feedback-group">
-                    <label for="feedbackMessage">反馈内容</label>
-                    <textarea id="feedbackMessage" placeholder="请详细描述您的问题或建议..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">提交反馈</button>
-            </form>
-            <div id="feedbackTip" style="margin-top:16px;font-size:14px;color:#0078d4;display:none;"></div>
+            <div class="feedback-card">
+                <p>
+                    点击下方按钮，将跳转到我们的 <strong>WPS 表单</strong> 页面。<br />
+                    在那里填写您的反馈内容并提交，我们就能收到您的宝贵意见。
+                </p>
+                <a href="https://f.wps.cn/g/JcliD5pB/" target="_blank" class="feedback-link-btn">
+                    前往反馈表单
+                </a>
+            </div>
         </section>
 
     </main>
 
     <script>
         // ============================================================
-        // 1. 左侧导航切换逻辑
+        // 左侧导航切换逻辑
         // ============================================================
         const navItems = document.querySelectorAll('.nav-item');
         const pages = {
@@ -403,54 +390,16 @@
 
         navItems.forEach(item => {
             item.addEventListener('click', function() {
-                // 移除所有导航按钮的 active 状态
                 navItems.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
 
-                // 隐藏所有页面
                 Object.values(pages).forEach(page => page.classList.remove('active'));
 
-                // 显示选中的页面
                 const pageKey = this.dataset.page;
                 if (pages[pageKey]) {
                     pages[pageKey].classList.add('active');
                 }
             });
-        });
-
-        // ============================================================
-        // 2. 意见反馈表单提交（模拟提示）
-        // ============================================================
-        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const name = document.getElementById('feedbackName').value.trim();
-            const email = document.getElementById('feedbackEmail').value.trim();
-            const message = document.getElementById('feedbackMessage').value.trim();
-
-            if (!name || !email || !message) {
-                alert('请完整填写所有字段（姓名、邮箱、反馈内容）。');
-                return;
-            }
-
-            // 简单邮箱格式校验
-            if (!email.includes('@') || !email.includes('.')) {
-                alert('请输入有效的邮箱地址。');
-                return;
-            }
-
-            const tip = document.getElementById('feedbackTip');
-            tip.style.display = 'block';
-            tip.textContent = '✅ 感谢您的反馈，我们会尽快处理！';
-            tip.style.color = '#107c10';
-
-            // 清空表单
-            this.reset();
-
-            // 5秒后提示消失
-            setTimeout(() => {
-                tip.style.display = 'none';
-            }, 5000);
         });
     </script>
 
